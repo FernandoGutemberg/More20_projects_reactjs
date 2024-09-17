@@ -6,7 +6,7 @@ const Board = () => {
     const [isNext, setIsNext] = useState(true);
     const winner = calculateWinner(squares);
 
-    const [aiIsThinking, setIsThinking] = useState(false);
+    const [aiIsThinking, setAiIsThinking] = useState(false);
 
     const handleClick = (i) => {
 
@@ -24,7 +24,24 @@ const Board = () => {
     const resetGame = () => {
         setSquares(Array(9).fill(null));
         setIsNext(true);
+
     };
+
+    useEffect(() => {
+
+        if (!isNext && !winner) {
+            setAiIsThinking(true);
+
+            setTimeout(() => {
+
+                aiMove(squares, setSquares, setIsNext);
+
+                setAiIsThinking(false);
+
+            }, 1000)
+
+        }
+    }, [isNext, squares, winner]);
 
     return (
         <div>
@@ -68,7 +85,7 @@ const calculateWinner = (squares) => {
         [2, 5, 8],
         [0, 4, 8],
         [2, 4, 6],
-      ];
+    ];
 
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
@@ -80,5 +97,31 @@ const calculateWinner = (squares) => {
 
     return null;
 };
+
+const aiMove = (squares, setSquares, setIsNext) => {
+    let move = null;
+
+    for (let i = 0; i < squares.length; i++) {
+        if (!squares[i]) {
+            move = i;
+            break;
+        }
+    }
+
+    if (move !== null) {
+        const newSquares = squares.slice();
+
+        newSquares[move] = "O";
+
+        setSquares(newSquares);
+
+        setIsNext(true);
+
+    }
+};
+
+// Desafio: 
+
+// // Colocar para escolher o X aleatoriamentes, placar de pontos.
 
 export default Board;
