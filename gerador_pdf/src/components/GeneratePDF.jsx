@@ -16,7 +16,7 @@ const GeneratePDF = () => {
         </label>
         <TextStyleConfig/>
         <ImageUpload/>
-        <button className='button'>Gerar de PDF</button>
+        <button className='button'>Gerar PDF</button>
       
     </div>
   );
