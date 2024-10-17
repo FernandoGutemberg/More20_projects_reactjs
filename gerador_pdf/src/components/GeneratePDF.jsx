@@ -13,22 +13,25 @@ const GeneratePDF = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [fontSize, setFontSize] = useState("12");
-  const [fontColor, setfontColor] = useState("#000");
+  const [fontColor, setFontColor] = useState("#000");
   const [isBold, setIsBold] = useState(false);
 
 
   const generatePdf = () => {
    const customStyle = {
-    
-   }
+    fontSize: parseInt(fontSize),
+    color: fontColor,
+    bold: isBold,
+   };
 
     const documentDefinition = {
       content: [
-        { text: `Título: ${title}` },
-        { text: `Descrição: ${description}` },
-
-
+        { text: `Título: ${title}`, style: "customStyle" },
+        { text: `Descrição: ${description}`, style: "customStyle" },
       ],
+      styles: {
+        customStyle: customStyle,
+      },
     };
 
     pdfMake.createPdf(documentDefinition).download();
@@ -56,7 +59,9 @@ const GeneratePDF = () => {
 
       <TextStyleConfig
         fontSize={fontSize}
-        setFontColor={fontColor}
+        setFontSize={setFontSize}
+        fontColor={fontColor}
+        setFontColor={setFontColor}
         isBold={isBold}
         setIsBold={setIsBold} />
 
