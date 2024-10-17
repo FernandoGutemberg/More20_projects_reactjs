@@ -12,9 +12,15 @@ const GeneratePDF = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [fontSize, setFontSize] = useState("12");
+  const [fontColor, setfontColor] = useState("#000");
+  const [isBold, setIsBold] = useState(false);
+
 
   const generatePdf = () => {
-    //config de estilos
+   const customStyle = {
+    
+   }
 
     const documentDefinition = {
       content: [
@@ -48,7 +54,12 @@ const GeneratePDF = () => {
           onChange={(e) => setDescription(e.target.value)} />
       </label>
 
-      <TextStyleConfig />
+      <TextStyleConfig
+        fontSize={fontSize}
+        setFontColor={fontColor}
+        isBold={isBold}
+        setIsBold={setIsBold} />
+
       <ImageUpload />
       <button className='button' onClick={generatePdf}>Gerar PDF</button>
 
