@@ -3,7 +3,10 @@ import TaxReport from "./components/TaxReport";
 
 import { Container, Typography } from "@mui/material";
 
+import { useState } from "react";
+
 function App() {
+  const [taxData, setTaxData] = useState(null);
 
   return (
     <Container style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -15,7 +18,7 @@ function App() {
         Calculadora de Impostos
       </Typography>
       <TaxForm />
-      <TaxReport />
+      {taxData && <TaxReport />}
 
     </Container>
   );

@@ -1,12 +1,17 @@
-import React from 'react';
+import { Container, Typography } from "@mui/material";
 
 const TaxReport = () => {
     return (
-        <div>
-            <p>Taxreport</p>
 
+        <Container>
+            <Typography variant="h5">Relatório de impostos</Typography>
+            <Typography variant="body1">Relatório de impostos</Typography>
+            <Typography variant="body1">Relatório de impostos</Typography>
+            <Typography variant="body1">Relatório de impostos</Typography>
+            <Typography variant="body1">Relatório de impostos</Typography>
 
-        </div>
+        </Container>
+
     );
 };
 
