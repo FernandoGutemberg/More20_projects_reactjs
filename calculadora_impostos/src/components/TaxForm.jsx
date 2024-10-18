@@ -1,6 +1,19 @@
 import { TextField, Button, Container } from "@mui/material";
 
-const TaxForm = () => {
+import { useFormik } from "formik";
+
+const TaxForm = ({ onSubmit }) => {
+
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      age: "",
+      income: ""
+    }
+
+  })
+
   return <Container>
     <form>
       <TextField

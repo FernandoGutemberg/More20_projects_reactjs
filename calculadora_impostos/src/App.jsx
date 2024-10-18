@@ -8,6 +8,11 @@ import { useState } from "react";
 function App() {
   const [taxData, setTaxData] = useState(null);
 
+  const calculateTax = (values) => {
+    console.log(values);
+
+  }
+
   return (
     <Container style={{ maxWidth: "800px", margin: "0 auto" }}>
       <Typography
@@ -17,7 +22,7 @@ function App() {
       >
         Calculadora de Impostos
       </Typography>
-      <TaxForm />
+      <TaxForm onSubmit={calculateTax} />
       {taxData && <TaxReport />}
 
     </Container>
