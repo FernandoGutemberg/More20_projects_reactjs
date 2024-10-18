@@ -10,17 +10,41 @@ const TaxForm = ({ onSubmit }) => {
       name: "",
       age: "",
       income: ""
-    }
+    },
+    validate: (values) => {
+      const errors = {}
 
-  })
+      if (!values.name) {
+        errors.name = "O campo nome é obrigatório"
+      }
+
+      if (!values.age) {
+        errors.age = "O campo idade é obrigatório"
+      }
+
+      if (!values.income) {
+        errors.income = "O campo de renda é obrigatório"
+      }
+
+      return errors;
+    },
+    onSubmit: (values) => {
+      onSubmit(values);
+    },
+  });
 
   return <Container>
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <TextField
         fullWidth
         label="Nome"
         name="name"
         style={{ marginBottom: "16px" }}
+        onChange={formik.handleChange}
+        value={formik.values.name}
+        helperText={formik.errors.name}
+        error={Boolean(formik.errors.name)}
+
       />
       <TextField
         fullWidth
@@ -28,6 +52,10 @@ const TaxForm = ({ onSubmit }) => {
         name="age"
         type="number"
         style={{ marginBottom: "16px" }}
+        onChange={formik.handleChange}
+        value={formik.values.age}
+        helperText={formik.errors.age}
+        error={Boolean(formik.errors.age)}
       />
       <TextField
         fullWidth
@@ -35,6 +63,10 @@ const TaxForm = ({ onSubmit }) => {
         name="income"
         type="number"
         style={{ marginBottom: "16px" }}
+        onChange={formik.handleChange}
+        value={formik.values.income}
+        helperText={formik.errors.income}
+        error={Boolean(formik.errors.income)}
       />
       <Button type="submit" variant="contained" color="primary">
         Calcular
