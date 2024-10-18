@@ -14,9 +14,22 @@ import {
 
 const PomodoroTimer = () => {
     return <Center>
-        <Text fontSize="4x1" mb="">10:00</Text>
+        <Box>
 
-    </Center>; 
+            <Text fontSize="4x1" mb="4" textAlign="center">
+                10:00
+            </Text>
+            <FormControl mb="4">
+                <FormLabel></FormLabel>
+                <Input type="number" />
+            </FormControl>
+            <HStack spacing="4">
+                <Button>Iniciar</Button>
+                <Button colorSchema="gray">Reiniciar</Button>
+
+            </HStack>
+        </Box>
+    </Center>;
 };
 
 export default PomodoroTimer;
