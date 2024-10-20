@@ -13,23 +13,26 @@ import {
 } from "framer-motion";
 
 const PomodoroTimer = () => {
-    return <Center>
-        <Box>
+    return (
 
-            <Text fontSize="4x1" mb="4" textAlign="center">
-                10:00
-            </Text>
-            <FormControl mb="4">
-                <FormLabel></FormLabel>
-                <Input type="number" />
-            </FormControl>
-            <HStack spacing="4">
-                <Button>Iniciar</Button>
-                <Button colorSchema="gray">Reiniciar</Button>
+        <Center width="100%" maxWidth="400px" p="4">
+            <Box>
 
-            </HStack>
-        </Box>
-    </Center>;
+                <Text fontSize="4x1" mb="4" textAlign="center">
+                    10:00
+                </Text>
+                <FormControl mb="4">
+                    <FormLabel>Definir tempo(minutos)</FormLabel>
+                    <Input type="number" />
+                </FormControl>
+                <HStack spacing="4">
+                    <Button>Iniciar</Button>
+                    <Button colorSchema="gray">Reiniciar</Button>
+
+                </HStack>
+            </Box>
+        </Center>
+    );
 };
 
 export default PomodoroTimer;
