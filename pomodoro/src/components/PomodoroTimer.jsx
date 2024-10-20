@@ -30,13 +30,25 @@ const PomodoroTimer = () => {
                     setSeconds(seconds - 1);
                 }
             }, 1000);
+        } else if (minutes === 0 && seconds === 0) {
+            alert("Tempo esgotado!");
+            resetTimer();
+        } else {
+            clearInterval(interval)
         }
+
+        return () => clearInterval(interval);
     }, [isActive, minutes, seconds]);
 
     const toggleTimer = () => {
         setIsActive(!isActive);
+    };
 
-    }
+    const resetTimer = () => {
+        setIsActive(false);
+        setMinutes(userTime);
+        setSeconds(0);
+    };
 
     const handleTimeChange = (e) => {
         setUserTime(e.target.value);
@@ -63,10 +75,10 @@ const PomodoroTimer = () => {
                         isDisabled={isActive} />
                 </FormControl>
                 <HStack spacing="4">
-                    <Button onClick={toggleTimer} colorScheme={isActive ?  "red" : "green"}>
+                    <Button onClick={toggleTimer} colorScheme={isActive ? "red" : "green"}>
                         {isActive ? "Pausar" : "Iniciar"}
                     </Button>
-                    <Button colorSchema="gray">Reiniciar</Button>
+                    <Button colorSchema="gray" onClick={resetTimer}>Reiniciar</Button>
 
                 </HStack>
             </Box>
