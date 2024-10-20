@@ -18,6 +18,33 @@ const PomodoroTimer = () => {
     const [isActive, setIsActive] = useState(false);
     const [userTime, setUserTime] = useState(25);
 
+    useEffect(() => {
+        let interval;
+
+        if (isActive && (minutes > 0 || seconds > 0)) {
+            interval = setInterval(() => {
+                if (seconds === 0) {
+                    setMinutes(minutes - 1)
+                    setSeconds(59)
+                } else {
+                    setSeconds(seconds - 1);
+                }
+            }, 1000);
+        }
+    }, [isActive, minutes, seconds]);
+
+    const toggleTimer = () => {
+        setIsActive(!isActive);
+
+    }
+
+    const handleTimeChange = (e) => {
+        setUserTime(e.target.value);
+        setMinutes(e.target.value);
+    };
+
+
+
     return (
 
         <Center width="100%" maxWidth="400px" p="4">
@@ -32,11 +59,13 @@ const PomodoroTimer = () => {
                     <Input
                         type="number"
                         value={userTime}
-                        onChange={handleChange}
+                        onChange={handleTimeChange}
                         isDisabled={isActive} />
                 </FormControl>
                 <HStack spacing="4">
-                    <Button>Iniciar</Button>
+                    <Button onClick={toggleTimer} colorScheme={isActive ?  "red" : "green"}>
+                        {isActive ? "Pausar" : "Iniciar"}
+                    </Button>
                     <Button colorSchema="gray">Reiniciar</Button>
 
                 </HStack>
