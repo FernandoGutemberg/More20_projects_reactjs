@@ -1,0 +1,12 @@
+import React from 'react';
+
+const Slide = ({url, isActive}) => {
+  return (
+    <div className={isActive ? "slice active" : "slide" }>
+        <img src={url}  />
+      
+    </div>
+  );
+};
+
+export default Slide;
