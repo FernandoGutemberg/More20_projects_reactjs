@@ -2,7 +2,7 @@ import React from 'react';
 
 const Slide = ({url, isActive}) => {
   return (
-    <div className={isActive ? "slice active" : "slide" }>
+    <div className={isActive ? "slide active" : "slide" }>
         <img src={url}  />
       
     </div>
