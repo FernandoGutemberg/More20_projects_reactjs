@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import SearchBar from './components/SearchBar';
+import TableHeader from './components/TableHeader';
+import TableRow from './components/TableRow';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [data, setData] = useState([
+    { nome: "Ana", idade: 25, cargo: "Engenheira" },
+    { nome: "João", idade: 30, cargo: "Desenvolvedor" },
+    { nome: "Maria", idade: 22, cargo: "Designer" },
+    { nome: "Carlos", idade: 40, cargo: "Gerente" },
+    { nome: "Sofia", idade: 28, cargo: "Analista" },
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="container">
+      <h1>Tabela de Usuários</h1>
+      <SearchBar />
+      <table>
+        <TableHeader />
+        <tbody>
+          <TableRow />
+        </tbody>
+      </table>
 
-export default App
+    </div>
+  );
+};
+
+export default App;
