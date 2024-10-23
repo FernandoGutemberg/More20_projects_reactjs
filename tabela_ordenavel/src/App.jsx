@@ -2,6 +2,7 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import TableHeader from './components/TableHeader';
 import TableRow from './components/TableRow';
+import { useState } from 'react';
 
 function App() {
 
