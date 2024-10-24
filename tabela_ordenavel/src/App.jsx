@@ -14,14 +14,19 @@ function App() {
     { nome: "Sofia", idade: 28, cargo: "Analista" },
   ]);
 
+  const [searchTerm, setSearchTerm] = useState(null);
+
   return (
     <div className="container">
       <h1>Tabela de Usuários</h1>
-      <SearchBar />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={searchTerm}/>
       <table>
         <TableHeader />
         <tbody>
-          <TableRow />
+          {data.map((row, index) => (
+            <TableRow key={index} row={row}/>  
+
+          ))}
         </tbody>
       </table>
 

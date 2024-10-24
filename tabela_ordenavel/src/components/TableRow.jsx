@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const TableRow = () => {
+const TableRow = ({ row }) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <tr>
+      <td>{row.nome}</td>
+      <td>{row.idade}</td>
+      <td>{row.cargo}</td>
+    </tr>
+  );
+};
 
-export default TableRow
+export default TableRow;
