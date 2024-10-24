@@ -15,6 +15,21 @@ function App() {
   ]);
 
   const [searchTerm, setSearchTerm] = useState(null);
+  const [sortConfig, setSortConfig] = useState("");
+
+  const sortedData = [...data].sort((a, b) => {
+
+    if(sortConfig !== null) {
+      if(a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if(a[setSortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "descending" ? 1 : -1;
+      }
+    }
+
+    return 0;
+  });
 
   return (
     <div className="container">
@@ -23,7 +38,7 @@ function App() {
       <table>
         <TableHeader />
         <tbody>
-          {data.map((row, index) => (
+          {sortedData.map((row, index) => (
             <TableRow key={index} row={row}/>  
 
           ))}
