@@ -19,27 +19,41 @@ function App() {
 
   const sortedData = [...data].sort((a, b) => {
 
-    if(sortConfig !== null) {
-      if(a[sortConfig.key] < b[sortConfig.key]) {
+    if (sortConfig !== null) {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
         return sortConfig.direction === "ascending" ? -1 : 1;
       }
-      if(a[setSortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "descending" ? 1 : -1;
+      if (a[setSortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
       }
     }
 
     return 0;
   });
 
+  const onColumnClick = (key) => {
+    let direction = "ascending";
+
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "ascending"
+    ) {
+      direction = "descending";
+    }
+
+    setSortConfig({ key, direction });
+  };
+
   return (
     <div className="container">
       <h1>Tabela de Usuários</h1>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={searchTerm}/>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={searchTerm} />
       <table>
-        <TableHeader />
+        <TableHeader onColumnClick={onColumnClick} />
         <tbody>
           {sortedData.map((row, index) => (
-            <TableRow key={index} row={row}/>  
+            <TableRow key={index} row={row} />
 
           ))}
         </tbody>
