@@ -1,4 +1,3 @@
-import './App.css';
 import SearchBar from './components/SearchBar';
 import TableHeader from './components/TableHeader';
 import TableRow from './components/TableRow';
@@ -14,8 +13,8 @@ function App() {
     { nome: "Sofia", idade: 28, cargo: "Analista" },
   ]);
 
-  const [searchTerm, setSearchTerm] = useState(null);
-  const [sortConfig, setSortConfig] = useState("");
+  const [searchTerm, setSearchTerm] = useState("null");
+  const [sortConfig, setSortConfig] = useState(null);
 
   const sortedData = [...data].sort((a, b) => {
 
@@ -30,6 +29,9 @@ function App() {
 
     return 0;
   });
+
+  const filteredData = sortedData.filter((row) => row.nome.toLowerCase().includes(searchTerm.toLowerCase()) || 
+  row.cargo.toLowerCase().includes(searchTerm.toLowerCase()))
 
   const onColumnClick = (key) => {
     let direction = "ascending";
@@ -48,11 +50,11 @@ function App() {
   return (
     <div className="container">
       <h1>Tabela de Usuários</h1>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={searchTerm} />
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <table>
         <TableHeader onColumnClick={onColumnClick} />
         <tbody>
-          {sortedData.map((row, index) => (
+          {filteredData.map((row, index) => (
             <TableRow key={index} row={row} />
 
           ))}
