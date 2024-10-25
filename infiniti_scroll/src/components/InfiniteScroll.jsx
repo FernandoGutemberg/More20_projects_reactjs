@@ -18,11 +18,24 @@ const InfiniteScroll = () => {
                 `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
             );
 
+            if (response.data.length > 0) {
+                setPosts((prevPosts) => [...prevPosts, ...response.data]);
+            } else {
+                setHasMoreData(false);
+            }
 
         } catch (error) {
+            console.log(error)
 
+        } finally {
+            setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        fetchPosts();
+
+    }, [page])
 
     return (
         <div>
