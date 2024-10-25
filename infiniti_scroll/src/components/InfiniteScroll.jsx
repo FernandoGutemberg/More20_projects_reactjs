@@ -35,7 +35,17 @@ const InfiniteScroll = () => {
     useEffect(() => {
         fetchPosts();
 
-    }, [page])
+    }, [page]);
+
+    //infinit scroll está atrelado a um event scroll
+    const handleScroll = () => {
+        if (window.innerHeight + window.scrollY >=
+            document.documentElement.scrollHeight - 100 &&
+            !isLoanding &&
+            hasMoreData) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
 
     return (
         <div>
