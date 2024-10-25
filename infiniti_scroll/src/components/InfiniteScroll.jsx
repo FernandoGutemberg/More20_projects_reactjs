@@ -3,15 +3,40 @@ import React, { useState, useEffect } from 'react';
 
 
 const InfiniteScroll = () => {
+    const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [isLoanding, setIsLoading] = useState(false);
+    const [hasMoreData, setHasMoreData] = useState(true);
+
+    const fetchPosts = async () => {
+        if (isLoanding) return;
+
+        setIsLoading(true);
+
+        try {
+            const response = await axios.get(
+                `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
+            );
+
+
+        } catch (error) {
+
+        }
+    };
+
     return (
         <div>
             <h1>Infinite Scroll</h1>
             <ul>
-                <li>
-                    <h3>Título</h3>
-                    <p>Corpo</p>
-                </li>
+                {posts.map((post) => (
+
+                    <li>
+                        <h3>{post.title}</h3>
+                        <p>{post.body}</p>
+                    </li>
+                ))}
             </ul>
+            {isLoanding && <p>Carregando mais posts...</p>}
 
         </div>
     );
