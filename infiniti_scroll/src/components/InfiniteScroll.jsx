@@ -47,6 +47,10 @@ const InfiniteScroll = () => {
         }
     };
 
+    useEffect(() => {
+
+    }, [hasMoreData, isLoanding])
+
     return (
         <div>
             <h1>Infinite Scroll</h1>
