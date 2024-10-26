@@ -48,9 +48,14 @@ const InfiniteScroll = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll());
+        const throttleHandleScroll = throttle(handleScroll, 150);
+        window.addEventListener("scroll", throttleHandleScroll);
 
-    }, [hasMoreData, isLoanding])
+        return () => {
+            window.removeEventListener("scroll", throttleHandleScroll);
+        };
+
+    }, [hasMoreData, isLoanding]);
 
     return (
         <div>
@@ -58,7 +63,7 @@ const InfiniteScroll = () => {
             <ul>
                 {posts.map((post) => (
 
-                    <li>
+                    <li key={Math.random() * 1000}>
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
                     </li>
@@ -74,7 +79,7 @@ function throttle(func, delay) {
     let lastCall = 0;
 
     return function(...args) {
-        const now = new Data().getTime();
+        const now = new Date().getTime();
         if (now - lastCall < delay) return;
         lastCall = now;
         return func(...args);
