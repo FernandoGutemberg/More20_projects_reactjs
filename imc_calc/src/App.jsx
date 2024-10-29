@@ -14,8 +14,13 @@ function App() {
   const calcImc = (e, height, weight) => {
     e.preventDefault();
 
-    console.log("Executou");
+    console.log(height, weight);
 
+
+    if (!weight || !height) return;
+
+
+    console.log("Executou");
 
   };
 
