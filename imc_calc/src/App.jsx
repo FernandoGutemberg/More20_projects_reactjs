@@ -14,14 +14,17 @@ function App() {
   const calcImc = (e, height, weight) => {
     e.preventDefault();
 
-    console.log(height, weight);
-
 
     if (!weight || !height) return;
 
+    const weightFloat = +weight.replace(",", ".");
+    const heightFloat = +height.replace(",", ".");
 
-    console.log("Executou");
+    const imcResult = (weightFloat / (heightFloat * heightFloat)).toFixed(1);
 
+
+    setImc(imcResult);
+ 
   };
 
 
