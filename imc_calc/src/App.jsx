@@ -10,19 +10,24 @@ import ImcTable from './components/ImcTable';
 
 
 function App() {
+
+  const calcImc = (e, height, weight) => {
+    e.preventDefault();
+
+    console.log("Executou");
+
+
+  };
+
+
+
   const [imc, setImc] = useState("");
   const [info, setInfo] = useState("");
   const [infoClass, setInfoClass] = useState("");
 
   return (
     <div className='container'>
-      {!imc ? (
-        <ImcCalc />
-
-      ) : (
-        <ImcTable />
-
-      )}
+      {!imc ? <ImcCalc calcImc={calcImc} /> : <ImcTable />}
     </div>
   );
 };
