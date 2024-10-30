@@ -1,4 +1,6 @@
-import React from 'react';
+import Button from './Button';
+import "./ImcTable.css";
+
 
 function ImcTable({ data }) {
   return (
@@ -23,7 +25,7 @@ function ImcTable({ data }) {
 
         ))}
       </div>
-      <Button  id="back-btn" text="Voltar" />
+      <Button id="back-btn" text="Voltar" />
     </div>
   );
 };
