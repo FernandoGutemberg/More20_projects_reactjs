@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className='container'>
-      {!imc ? <ImcCalc calcImc={calcImc} /> : <ImcTable />}
+      {!imc ? <ImcCalc calcImc={calcImc} /> : <ImcTable data={data}/>}
     </div>
   );
 };
