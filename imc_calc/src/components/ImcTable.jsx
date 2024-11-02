@@ -2,10 +2,10 @@ import Button from './Button';
 import "./ImcTable.css";
 
 
-function ImcTable({ data }) {
+function ImcTable({ data, imc, info, infoClass }) {
   return (
     <div id="result-container">
-      <p id="imc-number">Seu Imc:</p>
+      <p id="imc-number">Seu Imc: <span>{imc}</span></p>
       <p id="imc-info">Situação atual:</p>
       <h3>Confira as classificações:</h3>
       <div id="imc-table">
