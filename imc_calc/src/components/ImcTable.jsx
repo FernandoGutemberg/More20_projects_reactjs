@@ -5,8 +5,9 @@ import "./ImcTable.css";
 function ImcTable({ data, imc, info, infoClass }) {
   return (
     <div id="result-container">
-      <p id="imc-number">Seu Imc: <span>{imc}</span></p>
-      <p id="imc-info">Situação atual:</p>
+      <p id="imc-number">Seu Imc: <span className={infoClass}>{imc}</span>
+      </p>
+      <p id="imc-info">Situação atual: <span className={infoClass}>{info}</span> </p>
       <h3>Confira as classificações:</h3>
       <div id="imc-table">
         <div className="table-header">
