@@ -33,7 +33,8 @@ const Home = () => {
 
   return (
     <div>
-      Home
+      <h1>Último posts</h1>
+      {posts.length === 0 ? (<p>Carregando...</p>) : <p>Carregou</p>}
 
     </div>
   )
