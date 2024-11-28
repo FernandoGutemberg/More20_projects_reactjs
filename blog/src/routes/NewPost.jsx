@@ -1,6 +1,21 @@
 import "./NewPost.css";
+import blogFetch from "../axios/config";
+
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
+
+
 
 const NewPost = () => {
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState();
+  const [body, setBody] = useState();
+
+
+
   return <div className="new-post">
     <h2>Inserir novo Post:</h2>
     <form action="">
