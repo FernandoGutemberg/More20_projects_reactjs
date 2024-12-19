@@ -6,8 +6,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-
-
 const NewPost = () => {
   const navigate = useNavigate();
 
