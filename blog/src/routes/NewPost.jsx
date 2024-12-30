@@ -26,7 +26,7 @@ const NewPost = () => {
 
     <div className="new-post">
       <h2>Inserir novo Post:</h2>
-      <form onSubmit={() => createPost()}>
+      <form onSubmit={(e) => createPost(e)}>
         <div className="form-control">
           <label htmlFor="title">Título:</label>
           <input
