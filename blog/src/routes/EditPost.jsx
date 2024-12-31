@@ -12,9 +12,35 @@ const EditPost = () => {
     const [body, setBody] = useState();
 
     const { id } = useParams();
-    
 
+    const getPost = async () => {
+        try {
+            console.log(id);
+            const response = await blogFetch.get(`/posts/${id}`);
 
+            const data = response.data;
+
+            setTitle(data.title);
+            setBody(data.body);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const editPost = async (e) => {
+        e.preventDefault()
+
+        const post = { title, body, userId: 1 };
+
+        await blogFetch.put(`/posts/${id}`, {
+            body: post,
+        });
+    };
+
+    useEffect(() => {
+        getPost();
+    }, []);
 
     return (
         <div className="new-post">
@@ -28,6 +54,7 @@ const EditPost = () => {
                         id="title"
                         placeholder="Digite o título"
                         onChange={(e) => setTitle(e.target.value)}
+                        value={title || ""}
                     />
 
                 </div>
@@ -39,6 +66,7 @@ const EditPost = () => {
                         id="body"
                         placeholder="Digite o conteúdo"
                         onChange={(e) => setBody(e.target.value)}
+                        value={body || ""}
 
                     ></textarea>
                 </div>
