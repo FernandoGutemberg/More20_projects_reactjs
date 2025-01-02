@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const Card = ({ card }) => {
   return (
-    <div>
+    <div className={`card ${card.isFlipped ? "flipped" : ""}`}>
       {card.value}
 
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
