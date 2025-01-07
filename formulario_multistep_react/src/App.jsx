@@ -1,15 +1,25 @@
 // Components
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
+import UserForm from './components/UserForm';
+import ReviewForm from './components/ReviewForm';
+import Thanks from './components/Thanks';
 
+import { useForm } from './hooks/useForm';
 
 import './App.css';
 
 function App() {
 
+  const formComponents = [<UserForm />, <ReviewForm />, <Thanks />];
+
+  const { currentStep, currentComponent} = useForm(formComponents)
+
+
+
   return (
     <div className='app'>
       <div className='header'>
-        <h1>React Multistep</h1>
+        <h1>Deixe sua avaliação</h1>
         <p>
           Ficamos felizes com a sua compra, utilize o formulário abaixo para avaliar o produto
         </p>
@@ -17,7 +27,7 @@ function App() {
       <div className="form-container">
         <p>Etapas</p>
         <form action="">
-          <div className="inputs-container"></div>
+          <div className="inputs-container">{currentComponent}</div>
           <div className="actions">
             <button type='button'>
               <GrFormPrevious />
@@ -27,7 +37,7 @@ function App() {
             <button type='submit'>
               <span>Avançar</span>
               <GrFormNext />
-            
+
             </button>
           </div>
         </form>
