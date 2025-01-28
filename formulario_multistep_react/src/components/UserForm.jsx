@@ -4,7 +4,7 @@ const UserForm = () => {
   return (
     <div>
       <h2>User Form</h2>
-      <div className="form-control">
+      <div className="form-control" required>
         <label htmlFor="name">Nome:</label>
         <input
           type="text"
@@ -15,7 +15,7 @@ const UserForm = () => {
         />
       </div>
       <div className="form-control">
-        <label htmlFor="email">E-mail:</label>
+        <label htmlFor="email" required>E-mail:</label>
         <input
           type="email"
           name="email"
