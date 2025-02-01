@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Thanks.css";
 import {
   BsFillEmojiHeartEyesFill,
   BsFillEmojiSmileFill,
@@ -7,7 +6,18 @@ import {
   BsFillEmojiFrownFill,
 } from 'react-icons/bs';
 
-const Thanks = () => {
+import "./Thanks.css";
+
+const emojiData = {
+  undefined: <BsFillEmojiFrownFill />,
+  neutral: <BsFillEmojiNeutralFill />,
+  satisfied: <BsFillEmojiSmileFill />,
+  very_satisfied: <BsFillEmojiHeartEyesFill />,
+}
+
+
+
+const Thanks = ({ data }) => {
   return (
     <div className="thanks-container">
       <h2>Falta pouco....</h2>
@@ -16,12 +26,14 @@ const Thanks = () => {
         de desconto para a sua próxima compra.
       </p>
       <p>Para concluir a sua avaliação clique no botão de Enviar abaixo.</p>
-      <h3>Aqui está o resumo da sua avalização:</h3>
+      <h3>Aqui está o resumo da sua avalização {data.name}:</h3>
       <p className='review-data'>
         <span>Satisfação com o produto:</span>
+        {emojiData[data.review]}
       </p>
       <p className='review-data'>
         <span>Comentário:</span>
+        {data.comment}
       </p>
 
 
