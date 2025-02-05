@@ -10,6 +10,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 
 //Hooks
+import { useState } from "react";
 import { useForm } from "./hooks/useForm";
 
 
@@ -17,10 +18,33 @@ import { useForm } from "./hooks/useForm";
 //CSS
 import './App.css';
 
+type FormFields = {
+  name: string,
+  email: string,
+  review: string,
+  comment: string
+}
+
+const formtemplate: FormFields = {
+  name: "",
+  email: "",
+  review: "",
+  comment: "",
+
+}
+
 function App() {
+  const [data, setData] = useState(formtemplate);
+
+  const updateFielHandler = (key: string, value: string) => {
+
+    setData((prev) => {
+      return {...prev, [key]: value};
+    });
+  }
 
   const formComponents = [
-    <UserForm />,
+    <UserForm data={data} updateFielHandler={updateFielHandler}/>,
     <ReviewForm />,
     <Thanks />
   ];
