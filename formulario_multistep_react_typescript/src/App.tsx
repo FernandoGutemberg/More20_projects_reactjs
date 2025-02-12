@@ -6,6 +6,7 @@ import Steps from "./components/Steps";
 
 
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { FiSend } from "react-icons/fi";
 
 
 
@@ -39,17 +40,17 @@ function App() {
   const updateFielHandler = (key: string, value: string) => {
 
     setData((prev) => {
-      return {...prev, [key]: value};
+      return { ...prev, [key]: value };
     });
   }
 
   const formComponents = [
-    <UserForm data={data} updateFielHandler={updateFielHandler}/>,
-    <ReviewForm data={data} updateFielHandler={updateFielHandler}/>,
-    <Thanks />
+    <UserForm data={data} updateFielHandler={updateFielHandler} />,
+    <ReviewForm data={data} updateFielHandler={updateFielHandler} />,
+    <Thanks data={data}/>
   ];
 
-  const { currentStep, currentComponent, changeStep } = useForm(formComponents);
+  const { currentStep, currentComponent, changeStep, isLastStep } = useForm(formComponents);
 
   return (
     <div className="app">
@@ -73,10 +74,15 @@ function App() {
               <span>Voltar</span>
 
             </button>
-            <button>
+
+            {!isLastStep ? (<button type="submit">
               <span>Avançar</span>
               <GrFormNext />
-            </button>
+            </button>) : (<button type="button">
+              <span>Enviar</span>
+              <GrFormNext />
+            </button>)}
+
           </div>
 
         </form>
