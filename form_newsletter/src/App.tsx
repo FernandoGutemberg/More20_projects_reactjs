@@ -1,11 +1,10 @@
-import './App.css'
 import Form from './components/Form'
 
 function App() {
 
   return (
     <>
-    <h1>Inscreva-se</h1>
+    <h1 className="text-red-600">Inscreva-se</h1>
     <Form />
 
     </>
