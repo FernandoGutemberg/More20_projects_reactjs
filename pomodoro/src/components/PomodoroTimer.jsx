@@ -59,14 +59,13 @@ const PomodoroTimer = () => {
 
     return (
 
-        <Center width="100%" maxWidth="400px" p="4">
-            <Box>
-
+        <Center width="100%" mminHeight="100vh" p="6">
+            <Box width={{ base: "90%", md: "80%", lg: "60%" }} p="8" borderWidth="1px" borderRadius="lg">
                 <Text fontSize="4x1" mb="4" textAlign="center">
                     {String(minutes).padStart(2, "0")} :{" "}
                     {String(seconds).padStart(2, "0")}
                 </Text>
-                <FormControl mb="4">
+                <FormControl mb="6">
                     <FormLabel>Definir tempo(minutos)</FormLabel>
                     <Input
                         type="number"
@@ -74,11 +73,11 @@ const PomodoroTimer = () => {
                         onChange={handleTimeChange}
                         isDisabled={isActive} />
                 </FormControl>
-                <HStack spacing="4">
-                    <Button onClick={toggleTimer} colorScheme={isActive ? "red" : "green"}>
+                <HStack spacing="6" justifyContent="center">
+                    <Button  size="lg" onClick={toggleTimer} colorScheme={isActive ? "red" : "green"}>
                         {isActive ? "Pausar" : "Iniciar"}
                     </Button>
-                    <Button colorSchema="gray" onClick={resetTimer}>Reiniciar</Button>
+                    <Button size="lg" colorSchema="gray" onClick={resetTimer}>Reiniciar</Button>
 
                 </HStack>
             </Box>

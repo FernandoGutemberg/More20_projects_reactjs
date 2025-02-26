@@ -8,7 +8,7 @@ function App() {
   return (
     <ChakraProvider>
       <CSSReset />
-      <Box textAlign="center" fontSize="x1" mt="4">
+      <Box textAlign="center" fontSize="3xl" mt="4">
         <Text>Pomodoro</Text>
         <PomodoroTimer />
       </Box>
