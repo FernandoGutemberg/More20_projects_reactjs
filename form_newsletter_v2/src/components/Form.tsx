@@ -2,17 +2,17 @@ import { useState, FormEvent } from "react";
 import { User } from "../types/User";
 import { validate } from "../utils/validate";
 
-
 const Form = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [agree, setAgree] = useState(false);
 
-    const [errors, setErros] = useState<User | null>(null);
-
+    const [errors, setErrors] = useState<User | null>(null);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+
+        setErrors(null);
 
 
         const data: User = {
@@ -23,19 +23,19 @@ const Form = () => {
 
         const validateErros = validate(data);
 
-        console.log(data, validateErros);
-
         if (Object.keys(validateErros).length > 0) {
-            alert("Tem erros!");
+            setErrors(validateErros);
             return;
 
         }
 
+        setName("");
+        setEmail("");
+        setAgree(false);
+
 
         alert("Obrigado por se inscrever");
     };
-
-
 
     return (
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
@@ -48,6 +48,12 @@ const Form = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)} />
 
+                {errors?.name && (
+                    <small className="text-xs text-red-500 mt-1">
+                        {errors?.name}
+                    </small>
+                )}
+
             </div>
             <div className="flex flex-col">
                 <label className="text-sm" htmlFor="email">E-mail</label>
@@ -57,6 +63,12 @@ const Form = () => {
                     className="rounded-ld py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)} />
+
+                {errors?.email && (
+                    <small className="text-xs text-red-500 mt-1">
+                        {errors?.email}
+                    </small>
+                )}
 
             </div>
             <div className="flex flex-col">
@@ -69,14 +81,16 @@ const Form = () => {
                         onChange={(e) => setAgree(e.target.checked)} />
 
                     <label className="text-sm" htmlFor="agree">Concordo com os termos</label>
-
                 </div>
+                {errors?.agree && (
+                    <small className="text-xs text-red-500 mt-1">
+                        {errors?.agree}
+                    </small>
+                )}
             </div>
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Cadastrar
             </button>
-
-
 
         </form>
     );
