@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { User } from "../types/User";
+import { validate } from "../utils/validate";
 
 
 const Form = () => {
@@ -12,7 +13,26 @@ const Form = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        alert("Teste");
+
+
+        const data: User = {
+            name,
+            email,
+            agree,
+        };
+
+        const validateErros = validate(data);
+
+        console.log(data, validateErros);
+
+        if (Object.keys(validateErros).length > 0) {
+            alert("Tem erros!");
+            return;
+
+        }
+
+
+        alert("Obrigado por se inscrever");
     };
 
 
@@ -24,13 +44,19 @@ const Form = () => {
                 <input
                     type="text"
                     placeholder="Digite seu nome"
-                    className="rounded-ld py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400" />
+                    className="rounded-ld py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)} />
 
             </div>
             <div className="flex flex-col">
                 <label className="text-sm" htmlFor="email">E-mail</label>
-                <input type="email" placeholder="Insira seu melhor e-mail"
-                    className="rounded-ld py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400" />
+                <input
+                    type="email"
+                    placeholder="Insira seu melhor e-mail"
+                    className="rounded-ld py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)} />
 
             </div>
             <div className="flex flex-col">
@@ -38,7 +64,10 @@ const Form = () => {
                     Leia os termos
                 </a>
                 <div className="flex gap-2 items-center">
-                    <input type="checkbox" />
+                    <input type="checkbox"
+                        checked={agree}
+                        onChange={(e) => setAgree(e.target.checked)} />
+
                     <label className="text-sm" htmlFor="agree">Concordo com os termos</label>
 
                 </div>
