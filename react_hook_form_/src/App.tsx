@@ -3,9 +3,9 @@ import Form from './components/Form';
 function App() {
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">React hook form Typescript</h1>
-      <Form></Form>
+    <div className='bg-zinc-100 min-h-screen w-full flex flex-col items-center gap-6 pt-8'>
+      <h1 className="font-bold text-3xl">React hook form Typescript</h1>
+      <Form />
 
 
     </div>
