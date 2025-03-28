@@ -6,8 +6,8 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <Outlet />
       <h1>GitHub Finder</h1>
+      <Outlet />
 
     </div>
   );
